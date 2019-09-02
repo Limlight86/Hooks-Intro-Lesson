@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { useContext, useEffect } from "react";
+import { AppContext } from "../../context/AppContext";
 
 const Counter = () => {
-  return (
-    <h1>Counter</h1>
-  )
-}
+  const { counter, setCounter } = useContext(AppContext);
 
-export default Counter
+  useEffect(() => {
+    console.log("Counter Mounted!");
+    const interval = setInterval(() => {
+      setCounter(counter => counter + 1);
+    }, 1000);
+    return () => {
+      console.log("Counter Unmounted!");
+      clearInterval(interval);
+      setCounter(0);
+    };
+  }, [setCounter]);
+
+  return (
+      <h1>Counter : {counter}</h1>
+  );
+};
+
+export default Counter;
