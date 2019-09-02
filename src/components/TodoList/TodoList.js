@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 
 const TodoList = () => {
+  const { todoList } = useContext(AppContext);
+  
   return (
-    <h1>TodoList</h1>
-  )
-}
+    <ul>
+      {todoList.map(todo => (
+        <li key={todo.id}>{todo.text}</li>
+      ))}
+    </ul>
+  );
+};
 
-export default TodoList
+export default TodoList;

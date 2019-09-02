@@ -6,8 +6,12 @@ const AppContextProvider = ({ children }) => {
   const [todoList, setTodoList] = useState([]);
   const [counter, setCounter] = useState(0);
 
+  const addTodo = todo => {
+    setTodoList([...todoList, todo]);
+  };
+
   return (
-    <AppContext.Provider value={{ todoList, setTodoList, counter, setCounter}}>
+    <AppContext.Provider value={{ todoList, setTodoList, counter, setCounter, addTodo}}>
       {children}
     </AppContext.Provider>
   );
